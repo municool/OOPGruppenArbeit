@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace OOPGruppenArbeitLHOFLH
 {
-    public partial class Form1 : Form
+    public partial class DiaryEntryView : Form
     {
-        public Form1()
+        public DiaryEntryView()
         {
             InitializeComponent();
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            // Speichern-Methode aufrufen
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
