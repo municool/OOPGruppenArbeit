@@ -13,10 +13,9 @@ namespace OOPGruppenArbeitLHOFLH
 
         public List<string> GetAvailableTags()
         {
-            // Aus IInfrastructure aufrufen
+            var tagList = infrastructure.GetTags();
 
-
-            throw new NotImplementedException();
+            return tagList;
         }
 
         public DiaryEntry GetDiaryEntry(DateTime date)
