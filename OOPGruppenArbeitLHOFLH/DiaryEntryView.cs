@@ -52,6 +52,7 @@ namespace OOPGruppenArbeitLHOFLH
                     // Bild in pictureBox anzeigen
                     pictureBox1.Image = new Bitmap(ofd.FileName);
                     pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBox1.ImageLocation = ofd.FileName;
                 }
             }
         }
@@ -72,7 +73,6 @@ namespace OOPGruppenArbeitLHOFLH
         {
             // Daten abrufen
             UpdateView();
-
         }
 
         private void textBoxTags_TextChanged(object sender, EventArgs e)
@@ -81,14 +81,23 @@ namespace OOPGruppenArbeitLHOFLH
             textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         }
 
-        // Methode zum Datenabruf
+        // Methode zum Datenupdate
         public void UpdateView()
         {
             currentEntry = business.GetDiaryEntry(dateTimePicker1.Value);
-            dateTimePicker1.Value = currentEntry.DateTime;
-            textBoxDiaryInput.Text = currentEntry.EntryText;
-            textBoxTags.Text = string.Join(",",currentEntry.GetTags());
-            pictureBox1.ImageLocation = currentEntry.PicturePath;
+
+            if (currentEntry != null)
+            {
+                textBoxDiaryInput.Text = currentEntry.EntryText;
+                textBoxTags.Text = string.Join(",", currentEntry.GetTags());
+                pictureBox1.ImageLocation = currentEntry.PicturePath;
+            }
+            else
+            {
+                textBoxDiaryInput.Text = string.Empty;
+                textBoxTags.Text = string.Empty;
+                pictureBox1.ImageLocation = string.Empty;
+            }
         }
 
         // Textbox Tags: Aufruf GetAvailableTags();

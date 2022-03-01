@@ -15,12 +15,17 @@ namespace OOPGruppenArbeitLHOFLH
 
         public Guid Id { get; private set; }
         public DateTime DateTime { get; set; }
-        public string Tags { private get; set; }
+        public string Tags { get; set; }
         public string EntryText { get; set; }
         public string PicturePath { get; set; }
 
         public List<string> GetTags()
         {
+            if(Tags == null)
+            {
+                return new List<string>();
+            }
+
             return Tags.Split(',').ToList();
         }
     }
