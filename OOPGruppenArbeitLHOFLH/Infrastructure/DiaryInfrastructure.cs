@@ -72,6 +72,11 @@ namespace OOPGruppenArbeitLHOFLH
             File.WriteAllText(ConfigurationManager.AppSettings[TagsFilePathSettinsName], string.Join(",", tags));
         }
 
+        public User GetUser(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         private readonly EntryDbContext dbContext = new EntryDbContext();
 
         private const string TagsFilePathSettinsName = "TagsFilePath";

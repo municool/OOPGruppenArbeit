@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOPGruppenArbeitLHOFLH.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,5 +35,12 @@ namespace OOPGruppenArbeitLHOFLH
         /// </summary>
         /// <returns></returns>
         List<string> GetTags();
+
+        /// <summary>
+        /// Get user with the given name
+        /// </summary>
+        /// <param name="username">name of the user</param>
+        /// <returns></returns>
+        User GetUser(string username);
     }
 }
