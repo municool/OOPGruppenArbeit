@@ -14,7 +14,7 @@ namespace OOPGruppenArbeitLHOFLH
     public partial class DiaryEntryView : Form
     {
 
-        IBusiness business = null;
+        IBusiness business = new DiaryBusiness();
         DiaryEntry currentEntry = null;
 
         public DiaryEntryView()
@@ -22,6 +22,9 @@ namespace OOPGruppenArbeitLHOFLH
             InitializeComponent();
             // business = 
             // Daten abrufen (mit Methode)
+                        
+            // .GetDiaryEntry(dateTimePicker1); aktuell ausgewähltes Datum zum Content-Abruf
+
         }
 
         public void Save_Click(object sender, EventArgs e)
@@ -70,11 +73,24 @@ namespace OOPGruppenArbeitLHOFLH
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             // Daten abrufen
+
+        }
+
+        private void textBoxTags_TextChanged(object sender, EventArgs e)
+        {
+            textBoxTags.AutoCompleteSource = AutoCompleteSource.FileSystem;
+            textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         }
 
         // Methode zum Datenabruf
+        /*public DiaryEntry GetDiaryEntry(dateTimePicker1)
+        {
+
+        }*/
 
         // Textbox Tags: Aufruf GetAvailableTags();
+        // Vorschau von bereits genutzten Tags
+        // AutoComplete Source?
 
     }
 }
