@@ -19,12 +19,12 @@ namespace OOPGruppenArbeitLHOFLH
 
             if(start != null)
             {
-                entries = entries.Where(e => e.DateTime > start).ToList();
+                entries = entries.Where(e => e.DateTime.Date >= start.Value.Date).ToList();
             }
 
             if(end != null)
             {
-                entries = entries.Where(e => e.DateTime < end).ToList();
+                entries = entries.Where(e => e.DateTime.Date <= end.Value.Date).ToList();
             }
 
             return entries;
@@ -49,7 +49,7 @@ namespace OOPGruppenArbeitLHOFLH
 
         public void SaveDiaryEntry(DiaryEntry entry)
         {
-            if(dbContext.DiaryEntries.Any(e => e.Id == entry.Id))
+            if(dbContext.DiaryEntries.ToList().Any(e => e.Id == entry.Id))
             {
                 dbContext.Entry(entry).State = EntityState.Modified;
             }
@@ -69,7 +69,7 @@ namespace OOPGruppenArbeitLHOFLH
 
             tags.AddRange(entryTags.Except(tags));
 
-            File.WriteAllText(TagsFilePathSettinsName, string.Join(",", tags));
+            File.WriteAllText(ConfigurationManager.AppSettings[TagsFilePathSettinsName], string.Join(",", tags));
         }
 
         private readonly EntryDbContext dbContext = new EntryDbContext();
