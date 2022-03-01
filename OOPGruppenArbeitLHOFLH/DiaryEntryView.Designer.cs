@@ -80,12 +80,11 @@
             // textBoxTags
             // 
             this.textBoxTags.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.textBoxTags.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+            this.textBoxTags.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxTags.Location = new System.Drawing.Point(52, 311);
             this.textBoxTags.Name = "textBoxTags";
             this.textBoxTags.Size = new System.Drawing.Size(198, 20);
             this.textBoxTags.TabIndex = 4;
-            this.textBoxTags.TextChanged += new System.EventHandler(this.textBoxTags_TextChanged);
             // 
             // UploadButton
             // 
@@ -143,6 +142,7 @@
             this.Name = "DiaryEntryView";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Diary";
+            this.Load += new System.EventHandler(this.DiaryEntryView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

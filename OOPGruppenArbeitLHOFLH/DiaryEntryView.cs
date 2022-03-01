@@ -20,9 +20,6 @@ namespace OOPGruppenArbeitLHOFLH
         public DiaryEntryView()
         {
             InitializeComponent();
-
-            // Daten abrufen (mit Methode)
-            UpdateView();
         }
 
         public void Save_Click(object sender, EventArgs e)
@@ -75,12 +72,6 @@ namespace OOPGruppenArbeitLHOFLH
             UpdateView();
         }
 
-        private void textBoxTags_TextChanged(object sender, EventArgs e)
-        {
-            textBoxTags.AutoCompleteSource = AutoCompleteSource.FileSystem;
-            textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-        }
-
         // Methode zum Datenupdate
         public void UpdateView()
         {
@@ -100,9 +91,19 @@ namespace OOPGruppenArbeitLHOFLH
             }
         }
 
-        // Textbox Tags: Aufruf GetAvailableTags();
-        // Vorschau von bereits genutzten Tags
-        // AutoComplete Source?
+        private void DiaryEntryView_Load(object sender, EventArgs e)
+        {
+            // Daten abrufen (mit Methode)
+            UpdateView();
+            AutoCompleteTags();
+        }
 
+        public void AutoCompleteTags()
+        {
+            string[] availableTagList = business.GetAvailableTags().ToArray();
+            textBoxTags.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBoxTags.AutoCompleteCustomSource.AddRange(availableTagList);
+        }
     }
 }
