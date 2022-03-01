@@ -16,6 +16,7 @@ namespace OOPGruppenArbeitLHOFLH
 
         IBusiness business = new DiaryBusiness();
         DiaryEntry currentEntry = null;
+        string[] availableTagList = null;
 
         public DiaryEntryView()
         {
@@ -37,6 +38,8 @@ namespace OOPGruppenArbeitLHOFLH
 
             // Speichern-Methode aufrufen
             business.SaveDiaryEntry(currentEntry);
+
+            availableTagList = business.GetAvailableTags().ToArray();
         }
 
         public void UploadButton_Click(object sender, EventArgs e)
@@ -95,12 +98,11 @@ namespace OOPGruppenArbeitLHOFLH
         {
             // Daten abrufen (mit Methode)
             UpdateView();
-            AutoCompleteTags();
+            availableTagList = business.GetAvailableTags().ToArray();
         }
 
-        public void AutoCompleteTags()
+        private void textBoxTags_TextChanged(object sender, EventArgs e)
         {
-            string[] availableTagList = business.GetAvailableTags().ToArray();
             textBoxTags.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             textBoxTags.AutoCompleteCustomSource.AddRange(availableTagList);

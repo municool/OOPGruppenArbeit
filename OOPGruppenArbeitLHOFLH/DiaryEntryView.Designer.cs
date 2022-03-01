@@ -85,6 +85,7 @@
             this.textBoxTags.Name = "textBoxTags";
             this.textBoxTags.Size = new System.Drawing.Size(198, 20);
             this.textBoxTags.TabIndex = 4;
+            this.textBoxTags.TextChanged += new System.EventHandler(this.textBoxTags_TextChanged);
             // 
             // UploadButton
             // 
