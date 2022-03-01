@@ -74,7 +74,7 @@ namespace OOPGruppenArbeitLHOFLH
 
         public User GetUser(string username)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.ToList().FirstOrDefault(u => u.Username == username);
         }
 
         private readonly EntryDbContext dbContext = new EntryDbContext();
