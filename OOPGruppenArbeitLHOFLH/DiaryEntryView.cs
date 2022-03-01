@@ -20,11 +20,9 @@ namespace OOPGruppenArbeitLHOFLH
         public DiaryEntryView()
         {
             InitializeComponent();
-            // business = 
-            // Daten abrufen (mit Methode)
-                        
-            // .GetDiaryEntry(dateTimePicker1); aktuell ausgewähltes Datum zum Content-Abruf
 
+            // Daten abrufen (mit Methode)
+            UpdateView();
         }
 
         public void Save_Click(object sender, EventArgs e)
@@ -73,6 +71,7 @@ namespace OOPGruppenArbeitLHOFLH
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             // Daten abrufen
+            UpdateView();
 
         }
 
@@ -83,10 +82,14 @@ namespace OOPGruppenArbeitLHOFLH
         }
 
         // Methode zum Datenabruf
-        /*public DiaryEntry GetDiaryEntry(dateTimePicker1)
+        public void UpdateView()
         {
-
-        }*/
+            currentEntry = business.GetDiaryEntry(dateTimePicker1.Value);
+            dateTimePicker1.Value = currentEntry.DateTime;
+            textBoxDiaryInput.Text = currentEntry.EntryText;
+            textBoxTags.Text = string.Join(",",currentEntry.GetTags());
+            pictureBox1.ImageLocation = currentEntry.PicturePath;
+        }
 
         // Textbox Tags: Aufruf GetAvailableTags();
         // Vorschau von bereits genutzten Tags
