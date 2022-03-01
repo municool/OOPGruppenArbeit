@@ -16,5 +16,7 @@ namespace OOPGruppenArbeitLHOFLH
 
         bool IsValidEntry(DiaryEntry entry);
 
+        bool Login(string username, string password);
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using OOPGruppenArbeitLHOFLH.Infrastructure;
 
 namespace OOPGruppenArbeitLHOFLH
 {
@@ -26,7 +27,7 @@ namespace OOPGruppenArbeitLHOFLH
             return diaryEntry;
         }
 
-        private bool IsValidEntry(DiaryEntry entry)
+        public bool IsValidEntry(DiaryEntry entry)
         {
             return entry.EntryText.Length <= 1000 && entry.GetTags().Count <= 3;
         }
@@ -45,25 +46,17 @@ namespace OOPGruppenArbeitLHOFLH
             infrastructure.SaveDiaryEntry(entry);
         }
 
-
-
-        public void Login(string username, string password) //Methodenname Inhalt muss abgestimmt werden
+        public bool Login(string username, string password) //Methodenname Inhalt muss abgestimmt werden
         {
             //Passwort verschlüsseln
             string hashString = getHashSha256(password);
 
-            if(username == null && hashString == null)
-            {
-                //Methode zum aufrufen des Form
-            }
-            else
-            {
-                return "Your Login is not valid";
-            }
+            User user = infrastructure.GetUser(username);
 
-          
+            return user != null && user.Password == hashString;
         }
-        public static string getHashSha256(string password)
+
+        private string getHashSha256(string password)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(password);
             SHA256Managed hashstring = new SHA256Managed();
@@ -75,7 +68,5 @@ namespace OOPGruppenArbeitLHOFLH
             }
             return hashString;
         }
-
-        */
     }
 }
