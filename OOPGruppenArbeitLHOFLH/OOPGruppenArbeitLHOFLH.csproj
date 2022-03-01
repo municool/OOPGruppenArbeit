@@ -93,13 +93,14 @@
   <ItemGroup>
     <Compile Include="Infrastructure\EntryDbContext.cs" />
     <Compile Include="Infrastructure\DiaryEntry.cs" />
+    <Compile Include="Business\DiaryBusiness.cs" />
     <Compile Include="DiaryEntryView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DiaryEntryView.Designer.cs">
       <DependentUpon>DiaryEntryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="IBusiness.cs" />
+    <Compile Include="Business\IBusiness.cs" />
     <Compile Include="Infrastructure\IInfrastructure.cs" />
     <Compile Include="Infrastructure\DiaryInfrastructure.cs" />
     <Compile Include="Program.cs" />
