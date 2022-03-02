@@ -28,9 +28,14 @@ namespace OOPGruppenArbeitLHOFLH
             // Login-Methode aufrufen
             bool validLogin = business.Login(username, password);
 
-            if (validLogin == false)
+            if (!validLogin)
             {
                 labelErrorMessage.Text = "Login failed"; // gleiches Vorgehen im DiaryEntryView für IsValidEntry?
+            }
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
     }

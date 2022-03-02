@@ -96,6 +96,15 @@ namespace OOPGruppenArbeitLHOFLH
 
         private void DiaryEntryView_Load(object sender, EventArgs e)
         {
+            //do login shizzle
+
+            var loginForm = new LoginView();
+
+            if (loginForm.ShowDialog() != DialogResult.OK)
+            {
+                this.Close();
+            }
+
             textBoxTags.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             textBoxTags.AutoCompleteCustomSource.Clear();
