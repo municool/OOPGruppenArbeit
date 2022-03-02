@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -16,7 +11,7 @@ namespace OOPGruppenArbeitLHOFLH
 
         IBusiness business = new DiaryBusiness();
         DiaryEntry currentEntry = null;
-        string[] availableTagList = null;
+        List<string> tags = null;
 
         public DiaryEntryView()
         {
@@ -33,13 +28,14 @@ namespace OOPGruppenArbeitLHOFLH
             // Daten currentEntry zuweisen
             currentEntry.DateTime = dateTimePicker1.Value;
             currentEntry.EntryText = textBoxDiaryInput.Text;
-            currentEntry.Tags = textBoxTags.Text;
+            currentEntry.Tags = string.Join(",", tags);
             currentEntry.PicturePath = pictureBox1.ImageLocation;
 
             // Speichern-Methode aufrufen
             business.SaveDiaryEntry(currentEntry);
 
-            availableTagList = business.GetAvailableTags().ToArray();
+            textBoxTags.AutoCompleteCustomSource.Clear();
+            textBoxTags.AutoCompleteCustomSource.AddRange(business.GetAvailableTags().ToArray());
         }
 
         public void UploadButton_Click(object sender, EventArgs e)
@@ -76,36 +72,44 @@ namespace OOPGruppenArbeitLHOFLH
         }
 
         // Methode zum Datenupdate
-        public void UpdateView()
+        private void UpdateView()
         {
             currentEntry = business.GetDiaryEntry(dateTimePicker1.Value);
 
             if (currentEntry != null)
             {
                 textBoxDiaryInput.Text = currentEntry.EntryText;
-                textBoxTags.Text = string.Join(",", currentEntry.GetTags());
+                tags = currentEntry.GetTags();
                 pictureBox1.ImageLocation = currentEntry.PicturePath;
             }
             else
             {
                 textBoxDiaryInput.Text = string.Empty;
+                tags = new List<string>();
                 textBoxTags.Text = string.Empty;
                 pictureBox1.ImageLocation = string.Empty;
             }
+
+            addTagButton.Enabled = tags.Count < 3;
+            lblTagView.Text = string.Join(", ", tags);
         }
 
         private void DiaryEntryView_Load(object sender, EventArgs e)
         {
-            // Daten abrufen (mit Methode)
-            UpdateView();
-            availableTagList = business.GetAvailableTags().ToArray();
-        }
-
-        private void textBoxTags_TextChanged(object sender, EventArgs e)
-        {
             textBoxTags.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            textBoxTags.AutoCompleteCustomSource.AddRange(availableTagList);
+            textBoxTags.AutoCompleteCustomSource.Clear();
+            textBoxTags.AutoCompleteCustomSource.AddRange(business.GetAvailableTags().ToArray());
+
+            UpdateView();
+        }
+
+        private void addTagButton_Click(object sender, EventArgs e)
+        {
+            tags.Add(textBoxTags.Text);
+            lblTagView.Text = string.Join(", ", tags);
+            textBoxTags.Text = string.Empty;
+            addTagButton.Enabled = tags.Count < 3;
         }
     }
 }

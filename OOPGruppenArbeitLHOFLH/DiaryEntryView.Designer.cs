@@ -37,7 +37,9 @@
             this.UploadButton = new System.Windows.Forms.Button();
             this.DateIncreaseButton = new System.Windows.Forms.Button();
             this.DateDecreaseButton = new System.Windows.Forms.Button();
-            this.TagsLabel = new System.Windows.Forms.Label();
+            this.addTagButton = new System.Windows.Forms.Button();
+            this.labelTags = new System.Windows.Forms.Label();
+            this.lblTagView = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +71,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(743, 312);
+            this.saveButton.Location = new System.Drawing.Point(743, 364);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 3;
@@ -81,15 +83,14 @@
             // 
             this.textBoxTags.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBoxTags.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBoxTags.Location = new System.Drawing.Point(52, 311);
+            this.textBoxTags.Location = new System.Drawing.Point(97, 346);
             this.textBoxTags.Name = "textBoxTags";
-            this.textBoxTags.Size = new System.Drawing.Size(198, 20);
+            this.textBoxTags.Size = new System.Drawing.Size(138, 20);
             this.textBoxTags.TabIndex = 4;
-            this.textBoxTags.TextChanged += new System.EventHandler(this.textBoxTags_TextChanged);
             // 
             // UploadButton
             // 
-            this.UploadButton.Location = new System.Drawing.Point(418, 311);
+            this.UploadButton.Location = new System.Drawing.Point(620, 307);
             this.UploadButton.Name = "UploadButton";
             this.UploadButton.Size = new System.Drawing.Size(198, 24);
             this.UploadButton.TabIndex = 5;
@@ -117,21 +118,43 @@
             this.DateDecreaseButton.UseVisualStyleBackColor = true;
             this.DateDecreaseButton.Click += new System.EventHandler(this.DateDecreaseButton_Click);
             // 
-            // TagsLabel
+            // addTagButton
             // 
-            this.TagsLabel.AutoSize = true;
-            this.TagsLabel.Location = new System.Drawing.Point(12, 314);
-            this.TagsLabel.Name = "TagsLabel";
-            this.TagsLabel.Size = new System.Drawing.Size(34, 13);
-            this.TagsLabel.TabIndex = 8;
-            this.TagsLabel.Text = "Tags:";
+            this.addTagButton.Location = new System.Drawing.Point(16, 344);
+            this.addTagButton.Name = "addTagButton";
+            this.addTagButton.Size = new System.Drawing.Size(75, 23);
+            this.addTagButton.TabIndex = 9;
+            this.addTagButton.Text = "Add Tag";
+            this.addTagButton.UseVisualStyleBackColor = true;
+            this.addTagButton.Click += new System.EventHandler(this.addTagButton_Click);
+            // 
+            // labelTags
+            // 
+            this.labelTags.AutoSize = true;
+            this.labelTags.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTags.Location = new System.Drawing.Point(12, 316);
+            this.labelTags.Name = "labelTags";
+            this.labelTags.Size = new System.Drawing.Size(62, 24);
+            this.labelTags.TabIndex = 10;
+            this.labelTags.Text = "Tags: ";
+            // 
+            // lblTagView
+            // 
+            this.lblTagView.AutoSize = true;
+            this.lblTagView.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTagView.Location = new System.Drawing.Point(74, 316);
+            this.lblTagView.Name = "lblTagView";
+            this.lblTagView.Size = new System.Drawing.Size(0, 24);
+            this.lblTagView.TabIndex = 11;
             // 
             // DiaryEntryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 343);
-            this.Controls.Add(this.TagsLabel);
+            this.ClientSize = new System.Drawing.Size(827, 399);
+            this.Controls.Add(this.lblTagView);
+            this.Controls.Add(this.labelTags);
+            this.Controls.Add(this.addTagButton);
             this.Controls.Add(this.DateDecreaseButton);
             this.Controls.Add(this.DateIncreaseButton);
             this.Controls.Add(this.UploadButton);
@@ -161,7 +184,9 @@
         private System.Windows.Forms.Button UploadButton;
         private System.Windows.Forms.Button DateIncreaseButton;
         private System.Windows.Forms.Button DateDecreaseButton;
-        private System.Windows.Forms.Label TagsLabel;
+        private System.Windows.Forms.Button addTagButton;
+        private System.Windows.Forms.Label labelTags;
+        private System.Windows.Forms.Label lblTagView;
     }
 }
 
