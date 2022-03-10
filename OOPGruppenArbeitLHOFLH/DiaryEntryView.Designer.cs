@@ -40,6 +40,7 @@
             this.addTagButton = new System.Windows.Forms.Button();
             this.labelTags = new System.Windows.Forms.Label();
             this.lblTagView = new System.Windows.Forms.Label();
+            this.LogoutButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,11 +148,22 @@
             this.lblTagView.Size = new System.Drawing.Size(0, 24);
             this.lblTagView.TabIndex = 11;
             // 
+            // LogoutButton
+            // 
+            this.LogoutButton.Location = new System.Drawing.Point(743, 9);
+            this.LogoutButton.Name = "LogoutButton";
+            this.LogoutButton.Size = new System.Drawing.Size(75, 23);
+            this.LogoutButton.TabIndex = 12;
+            this.LogoutButton.Text = "Logout";
+            this.LogoutButton.UseVisualStyleBackColor = true;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+            // 
             // DiaryEntryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 399);
+            this.Controls.Add(this.LogoutButton);
             this.Controls.Add(this.lblTagView);
             this.Controls.Add(this.labelTags);
             this.Controls.Add(this.addTagButton);
@@ -187,6 +199,7 @@
         private System.Windows.Forms.Button addTagButton;
         private System.Windows.Forms.Label labelTags;
         private System.Windows.Forms.Label lblTagView;
+        private System.Windows.Forms.Button LogoutButton;
     }
 }
 

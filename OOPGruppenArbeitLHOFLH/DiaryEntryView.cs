@@ -120,5 +120,14 @@ namespace OOPGruppenArbeitLHOFLH
             textBoxTags.Text = string.Empty;
             addTagButton.Enabled = tags.Count < 3;
         }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            // Wahrscheinlich gibt eine schönere Variante...
+            Hide();
+            DiaryEntryView_Load(sender, e);
+            Show();
+            
+        }
     }
 }
