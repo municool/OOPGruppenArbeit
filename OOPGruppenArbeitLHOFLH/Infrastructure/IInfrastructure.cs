@@ -42,5 +42,12 @@ namespace OOPGruppenArbeitLHOFLH
         /// <param name="username">name of the user</param>
         /// <returns></returns>
         User GetUser(string username);
+
+        /// <summary>
+        /// Get list of all entries with the given tag
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        List<DiaryEntry> GetEntriesByTag(string tag);
     }
 }
