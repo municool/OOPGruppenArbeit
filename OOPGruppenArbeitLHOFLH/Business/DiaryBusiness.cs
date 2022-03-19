@@ -48,7 +48,6 @@ namespace OOPGruppenArbeitLHOFLH
 
         public bool Login(string username, string password) //Methodenname Inhalt muss abgestimmt werden
         {
-            //Passwort verschlüsseln
             string hashString = getHashSha256(password);
 
             User user = infrastructure.GetUser(username);
