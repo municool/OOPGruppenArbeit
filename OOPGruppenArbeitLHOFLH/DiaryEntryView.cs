@@ -92,18 +92,39 @@ namespace OOPGruppenArbeitLHOFLH
 
             addTagButton.Enabled = tags.Count < 3;
             lblTagView.Text = string.Join(", ", tags);
+
+            menuItemTags.DropDownItems.Clear();
+            menuItemTags.DropDownItems.AddRange(GetToolStripTags());
+            menuItemTags.DropDown.Closing += OnToolStripDropDownClosing;
+        }
+
+        private ToolStripItem[] GetToolStripTags()
+        {
+            var availableTags = business.GetAvailableTags();
+
+            var toolStripItems = new List<ToolStripItem>();
+            foreach (var tag in availableTags)
+            {
+                var dropDown = new ToolStripDropDownButton();
+
+                dropDown.Text = tag;
+                dropDown.Click += TagButton_Click;
+                toolStripItems.Add(dropDown);
+            }
+
+            return toolStripItems.ToArray();
         }
 
         private void DiaryEntryView_Load(object sender, EventArgs e)
         {
             //do login shizzle
 
-            var loginForm = new LoginView();
+            //var loginForm = new LoginView();
 
-            if (loginForm.ShowDialog() != DialogResult.OK)
-            {
-                this.Close();
-            }
+            //if (loginForm.ShowDialog() != DialogResult.OK)
+            //{
+            //    this.Close();
+            //}
 
             textBoxTags.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -119,6 +140,49 @@ namespace OOPGruppenArbeitLHOFLH
             lblTagView.Text = string.Join(", ", tags);
             textBoxTags.Text = string.Empty;
             addTagButton.Enabled = tags.Count < 3;
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            // Wahrscheinlich gibt eine schönere Variante...
+            Hide();
+            DiaryEntryView_Load(sender, e);
+            Show();
+
+        }
+
+        private void TagButton_Click(object sender, EventArgs e)
+        {
+            var dropDownButton = (ToolStripDropDownButton)sender;
+
+            var tags = business.GetEntriesForTag(dropDownButton.Text);
+
+            dropDownButton.DropDownItems.Clear();
+
+            foreach (var tag in tags)
+            {
+                var entryButton = new ToolStripButton();
+
+                entryButton.Text = tag.Value.ToString("dd-MM-yyyy");
+                entryButton.Click += EntryButton_Click;
+
+                dropDownButton.DropDownItems.Add(entryButton);
+            }
+        }
+
+        private void EntryButton_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = DateTime.Parse(((ToolStripButton)sender).Text);
+        }
+        
+        private void OnToolStripDropDownClosing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            var tsdd = (ToolStripDropDown)sender;
+
+            // checking if mouse cursor is inside
+            Point p = tsdd.PointToClient(Control.MousePosition);
+            if (tsdd.DisplayRectangle.Contains(p))
+                e.Cancel = true;  // cancel closing
         }
     }
 }

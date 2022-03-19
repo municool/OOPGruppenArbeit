@@ -77,6 +77,11 @@ namespace OOPGruppenArbeitLHOFLH
             return dbContext.Users.ToList().FirstOrDefault(u => u.Username == username);
         }
 
+        public List<DiaryEntry> GetEntriesByTag(string tag)
+        {
+            return dbContext.DiaryEntries.Where(m => m.Tags.Contains(tag)).ToList();
+        }
+
         private readonly EntryDbContext dbContext = new EntryDbContext();
 
         private const string TagsFilePathSettinsName = "TagsFilePath";

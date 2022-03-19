@@ -18,5 +18,7 @@ namespace OOPGruppenArbeitLHOFLH
 
         bool Login(string username, string password);
 
+        Dictionary<string, DateTime> GetEntriesForTag(string tag);
+
     }
 }

@@ -67,5 +67,14 @@ namespace OOPGruppenArbeitLHOFLH
             }
             return hashString;
         }
+
+        public Dictionary<string, DateTime> GetEntriesForTag(string tag)
+        {
+            var dict = new Dictionary<string, DateTime>();
+
+            infrastructure.GetEntriesByTag(tag).ForEach(e => dict.Add(e.Id.ToString(), e.DateTime));
+
+            return dict;
+        }
     }
 }
