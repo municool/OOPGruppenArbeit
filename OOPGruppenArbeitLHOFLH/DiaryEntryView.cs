@@ -140,12 +140,12 @@ namespace OOPGruppenArbeitLHOFLH
         {
             //do login shizzle
 
-            //var loginForm = new LoginView();
+            var loginForm = new LoginView();
 
-            //if (loginForm.ShowDialog() != DialogResult.OK)
-            //{
-            //    this.Close();
-            //}
+            if (loginForm.ShowDialog() != DialogResult.OK)
+            {
+                this.Close();
+            }
 
             textBoxTags.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
