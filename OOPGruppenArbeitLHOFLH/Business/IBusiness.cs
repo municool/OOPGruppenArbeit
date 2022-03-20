@@ -20,5 +20,7 @@ namespace OOPGruppenArbeitLHOFLH
 
         Dictionary<string, DateTime> GetEntriesForTag(string tag);
 
+        List<DateTime> GetEmptyEntriesFromLastMonth();
+
     }
 }

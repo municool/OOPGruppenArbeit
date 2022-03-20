@@ -96,6 +96,10 @@ namespace OOPGruppenArbeitLHOFLH
             menuItemTags.DropDownItems.Clear();
             menuItemTags.DropDownItems.AddRange(GetToolStripTags());
             menuItemTags.DropDown.Closing += OnToolStripDropDownClosing;
+
+            emtyEntriesToolStripMenuItem.DropDownItems.Clear();
+            emtyEntriesToolStripMenuItem.DropDownItems.AddRange(GetEmptyEntries());
+            //emtyEntriesToolStripMenuItem.DropDown.Closing += OnToolStripDropDownClosing;
         }
 
         private ToolStripItem[] GetToolStripTags()
@@ -109,6 +113,23 @@ namespace OOPGruppenArbeitLHOFLH
 
                 dropDown.Text = tag;
                 dropDown.Click += TagButton_Click;
+                toolStripItems.Add(dropDown);
+            }
+
+            return toolStripItems.ToArray();
+        }
+
+        private ToolStripItem[] GetEmptyEntries()
+        {
+            var emptyEntries = business.GetEmptyEntriesFromLastMonth();
+
+            var toolStripItems = new List<ToolStripItem>();
+            foreach (var entry in emptyEntries)
+            {
+                var dropDown = new ToolStripDropDownButton();
+
+                dropDown.Text = entry.ToString("dd-MM-yy");
+                dropDown.Click += EntryButton_Click;
                 toolStripItems.Add(dropDown);
             }
 
@@ -163,7 +184,7 @@ namespace OOPGruppenArbeitLHOFLH
             {
                 var entryButton = new ToolStripButton();
 
-                entryButton.Text = tag.Value.ToString("dd-MM-yyyy");
+                entryButton.Text = tag.Value.ToString("dd-MM-yy");
                 entryButton.Click += EntryButton_Click;
 
                 dropDownButton.DropDownItems.Add(entryButton);
@@ -172,7 +193,7 @@ namespace OOPGruppenArbeitLHOFLH
 
         private void EntryButton_Click(object sender, EventArgs e)
         {
-            dateTimePicker1.Value = DateTime.Parse(((ToolStripButton)sender).Text);
+            dateTimePicker1.Value = DateTime.Parse(((ToolStripItem)sender).Text);
         }
         
         private void OnToolStripDropDownClosing(object sender, ToolStripDropDownClosingEventArgs e)

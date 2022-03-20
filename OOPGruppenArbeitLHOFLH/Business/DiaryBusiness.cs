@@ -36,7 +36,7 @@ namespace OOPGruppenArbeitLHOFLH
         {
             DiaryBusiness boolean = new DiaryBusiness();
 
-            bool result = boolean.IsValidEntry(entry); 
+            bool result = boolean.IsValidEntry(entry);
 
             if (result == false)
             {
@@ -76,6 +76,24 @@ namespace OOPGruppenArbeitLHOFLH
             infrastructure.GetEntriesByTag(tag).ForEach(e => dict.Add(e.Id.ToString(), e.DateTime));
 
             return dict;
+        }
+
+        public List<DateTime> GetEmptyEntriesFromLastMonth()
+        {
+            var entries = infrastructure.GetDiaryEntries(DateTime.Today.AddDays(-30), DateTime.Today);
+
+            var list = new List<DateTime>();
+
+            var day = DateTime.Today.AddDays(-30);
+            for (int i = 0; i < 30; i++)
+            {
+                if (!entries.Any(e => e.DateTime.Date == day.AddDays(i).Date))
+                {
+                    list.Add(day.AddDays(i));
+                }
+            }
+
+            return list;
         }
     }
 }
