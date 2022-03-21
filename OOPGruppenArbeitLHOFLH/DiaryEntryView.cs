@@ -139,13 +139,7 @@ namespace OOPGruppenArbeitLHOFLH
         private void DiaryEntryView_Load(object sender, EventArgs e)
         {
             //do login shizzle
-
-            var loginForm = new LoginView();
-
-            if (loginForm.ShowDialog() != DialogResult.OK)
-            {
-                this.Close();
-            }
+            ShowLogin();
 
             textBoxTags.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBoxTags.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -167,7 +161,7 @@ namespace OOPGruppenArbeitLHOFLH
         {
             // Wahrscheinlich gibt eine schönere Variante...
             Hide();
-            DiaryEntryView_Load(sender, e);
+            ShowLogin();
             Show();
 
         }
@@ -204,6 +198,16 @@ namespace OOPGruppenArbeitLHOFLH
             Point p = tsdd.PointToClient(Control.MousePosition);
             if (tsdd.DisplayRectangle.Contains(p))
                 e.Cancel = true;  // cancel closing
+        }
+
+        private void ShowLogin()
+        {
+            var loginForm = new LoginView();
+
+            if (loginForm.ShowDialog() != DialogResult.OK)
+            {
+                this.Close();
+            }
         }
     }
 }
