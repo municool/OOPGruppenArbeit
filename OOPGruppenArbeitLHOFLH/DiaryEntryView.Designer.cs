@@ -192,7 +192,7 @@
             // 
             this.emtyEntriesToolStripMenuItem.Name = "emtyEntriesToolStripMenuItem";
             this.emtyEntriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.emtyEntriesToolStripMenuItem.Text = "Emty Entries";
+            this.emtyEntriesToolStripMenuItem.Text = "Empty Entries";
             // 
             // DiaryEntryView
             // 
