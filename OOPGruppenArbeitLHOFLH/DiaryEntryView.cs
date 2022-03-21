@@ -159,11 +159,11 @@ namespace OOPGruppenArbeitLHOFLH
 
         private void LogoutButton_Click(object sender, EventArgs e)
         {
-            // Wahrscheinlich gibt eine schönere Variante...
             Hide();
-            ShowLogin();
-            Show();
-
+            if (ShowLogin())
+            {
+                Show();
+            }
         }
 
         private void TagButton_Click(object sender, EventArgs e)
@@ -200,14 +200,16 @@ namespace OOPGruppenArbeitLHOFLH
                 e.Cancel = true;  // cancel closing
         }
 
-        private void ShowLogin()
+        private bool ShowLogin()
         {
             var loginForm = new LoginView();
 
             if (loginForm.ShowDialog() != DialogResult.OK)
             {
                 this.Close();
+                return false;
             }
+            return true;
         }
     }
 }
